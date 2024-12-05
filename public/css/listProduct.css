@@ -1,0 +1,122 @@
+.container {
+    padding: 20px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -25px;
+}
+
+.product {
+    width: calc(25% - 25px);
+    margin-left: 25px;
+    margin-bottom: 35px;
+}
+
+.product-list:first-child {
+    margin-top: -15px;
+}
+
+.product-img {
+    height: 468px;
+    width: 100%;
+    position: relative !important;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.product-name {
+    text-align: center;
+}
+
+.product-price {
+    text-align: center;
+}
+
+.product-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.box-left {
+    border-width: 3px;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #ab6b26;
+}
+
+.box-right {
+    border-width: 3px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #1e262e;
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+}
+
+.favorite-icon {
+    position: absolute !important;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.favorite-icon i {
+    color: #ff6666;
+}
+
+.favorite-icon.active {
+    border: none;
+    /* Thêm border màu đen khi active */
+}
+
+.favorite-icon.active i {
+    color: black;
+}
+
+.container_pagination {
+    margin-top: 50px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-item--active .pagination-item_link {
+    background-color: black;
+    color: white;
+}
+
+.pagination-item_link {
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: #939393;
+    min-width: 40px;
+    height: 30px;
+    display: block;
+    text-align: center;
+    line-height: 30px;
+    font-size: 15px;
+    border-radius: 2px;
+}
+
+.pagination-item {
+    margin: 0 8px;
+}

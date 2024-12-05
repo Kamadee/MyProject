@@ -1,0 +1,352 @@
+.detail-product-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr 6fr;
+    grid-template-rows: 785px;
+    padding: 70px 50px 0 50px;
+}
+
+.detail-product-list {
+    list-style: none;
+    padding-top: 193px;
+}
+
+.detail-product-list li:nth-last-child(-n + 2) {
+    padding-left: 22px;
+    /* Các phần tử <li> cuối cùng sẽ được căn giữa */
+}
+
+.content-carousel {
+    width: 400px;
+    display: flex;
+    margin-right: 100px;
+}
+
+.owl-carousel {
+    width: calc(100% - 170px);
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    width: 380px;
+}
+
+.owl-carousel .owl-dots {
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.owl-carousel .owl-dot {
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+}
+
+.owl-carousel .owl-dot.active {
+    opacity: 0.5;
+}
+
+.owl-dots {
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    margin-top: 200px;
+}
+
+.own-item img {
+    width: 100%;
+}
+
+.detail-product-list li {
+    margin-top: 24px;
+}
+
+.detail-product-img {
+    /* border: 1px solid black; */
+    min-height: 50px;
+}
+
+.img-product {
+    max-height: 100%;
+    margin-left: 30px;
+}
+
+.detail-product-info {
+    margin-top: 26px;
+    margin-left: 45px;
+}
+
+.detail-product-info p {
+    font-size: 16px;
+}
+
+.checked {
+    color: gold;
+    padding-left: 1px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.rating {
+    padding-top: 18px;
+    padding-bottom: 18px;
+}
+
+.size-button {
+    display: inline-block;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    border: 1.8px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 12px;
+    margin-right: 20px;
+    margin-bottom: 40px;
+    pointer-events: auto;
+}
+
+.size-radio,
+.color-radio {
+    display: none;
+}
+
+.size-button,
+.color-option {
+    display: inline-flex;
+    /* Use inline-flex to align items inside flex container */
+    align-items: center;
+    /* Center items vertically */
+    justify-content: center;
+    /* Center items horizontally */
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid #000;
+    margin: 5px;
+    width: 45px;
+    /* Adjust width as needed */
+    height: 45px;
+    /* Adjust height as needed */
+    text-align: center;
+    /* Center text */
+    transition: background-color 0.3s, border 0.3s;
+}
+
+.size-radio:checked + .size-button,
+.color-radio:checked + .color-option {
+    border: 2px solid #000;
+    background-color: #000;
+    /* Change background color when selected */
+    color: #fff;
+    /* Change text color when selected */
+}
+
+.color-picker {
+    display: flex;
+    margin-top: 20px;
+}
+
+.color-option {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    margin-right: 23px;
+    pointer-events: auto;
+}
+
+.color-option.active {
+    border-color: #000;
+}
+
+.button-cart {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 19px;
+}
+
+.btn {
+    margin-right: 15px;
+    display: flex;
+    width: 227px;
+    height: 45px;
+    gap: 20px;
+    /* Độ dài mong muốn */
+    padding: 10px;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 0 !important;
+    justify-content: center;
+}
+
+.bag-outline {
+    padding-left: 15px;
+}
+
+.button-text {
+    font-size: 14px;
+}
+
+.price-box {
+    width: 178px;
+    height: 45px;
+    border: 1px solid black;
+    font-weight: 400;
+    letter-spacing: 9%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3c4242;
+}
+
+.horizontal-line {
+    border-bottom: 1px solid black;
+    margin-top: 50px;
+    border-bottom-color: #ccc;
+    width: 534px;
+}
+
+.support {
+    display: grid;
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 97px;
+    margin-top: 29px;
+    font-weight: 600;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 90%;
+    /* Vị trí phía trên của thẻ div chứa dòng chữ */
+    left: 50%;
+    margin-left: -120px;
+    /* Canh giữa */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 10;
+}
+
+.bestseller {
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 10px;
+}
+
+/* .container {
+    padding: 20px;
+}
+
+.card-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -25px;
+}
+
+.card-product {
+    width: calc(25% - 25px);
+    margin-left: 25px;
+    margin-bottom: 35px;
+}
+
+.card-product:first-child {
+    margin-top: -15px;
+} */
+
+.product-img {
+    height: 468px;
+    width: 100%;
+    position: relative !important;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.product-name {
+    text-align: center;
+}
+
+.product-price {
+    text-align: center;
+}
+
+.product-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.box-left {
+    border-width: 3px;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #ab6b26;
+}
+
+.box-right {
+    border-width: 3px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #1e262e;
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+}
+
+.favorite-icon {
+    position: absolute !important;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.favorite-icon i {
+    color: #ff6666;
+}
+
+.favorite-icon.active {
+    border: none;
+    /* Thêm border màu đen khi active */
+}
+
+.favorite-icon.active i {
+    color: black;
+}

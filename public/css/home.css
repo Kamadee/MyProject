@@ -1,0 +1,178 @@
+.banner {
+    background-image: url("{{ asset('images/banner/young-friends-sitting-curb-city.png') }}");
+    width: 100%;
+    height: 580px;
+    background-size: cover;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* margin-top: 50px; */
+}
+
+.banner .banner-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffff;
+    position: absolute;
+    bottom: 100px;
+}
+
+.season-name {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.tell {
+    font-size: 40px;
+    font-weight: 430;
+}
+
+.banner-menu button,
+.banner-menu button:hover {
+    background-color: #fff;
+    color: black;
+    font-size: 20px;
+}
+
+.favorite-icon {
+    position: absolute !important;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* .product-img:hover .favorite-icon {
+        opacity: 0.5;
+    } */
+
+.favorite-icon i {
+    color: #ff6666;
+}
+
+.favorite-icon.active {
+    border: none;
+    /* Thêm border màu đen khi active */
+}
+
+.favorite-icon.active i {
+    color: black;
+}
+
+.product-img {
+    height: 468px;
+    width: 100%;
+    position: relative !important;
+}
+
+.product-img img {
+    width: 100%;
+    /* Chiều rộng của hình ảnh sẽ bằng 100% của khung */
+    height: 100%;
+    /* Chiều cao của hình ảnh sẽ bằng 100% của khung */
+    object-fit: cover;
+    position: relative;
+}
+
+.product {
+    width: 307px;
+    border: none !important;
+}
+
+.product:last-child {
+    margin-right: 0;
+    /* Loại bỏ khoảng cách bên phải của phần tử cuối cùng */
+}
+
+.product-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.card-list {
+    gap: 0 25px;
+    text-align: center;
+}
+
+.box {
+    width: 30px;
+    height: 30px;
+}
+
+.match-table {
+    margin-top: 20px;
+}
+
+.bestseller {
+    font-weight: 350;
+}
+
+.collection {
+    background-image: url("{{ asset('images/banner/2149003088.png') }}");
+    width: 100%;
+    height: 580px;
+    background-size: cover;
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.collection .collection-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #ffff;
+    position: absolute;
+    bottom: 100px;
+}
+
+.box-left {
+    border-width: 3px;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #ece7e7;
+}
+
+.box-right {
+    border-width: 3px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #161313;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: rgb(83, 74, 74);
+    margin-top: 70px;
+}
+/* .favorite-icon i {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.favorite-icon.clicked i {
+    animation: bounce 0.5s ease;
+    color: red; 
+    transform: scale(1.2);
+} */
+
+/* @keyframes bounce {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.4);
+    }
+} */

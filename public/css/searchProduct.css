@@ -1,0 +1,395 @@
+.sidebar-search {
+    height: 1000px;
+    margin-bottom: 800px;
+    border: none;
+    width: 300px;
+}
+
+.search-product-wrapper {
+    margin: 100px 20px 0 100px;
+    font-size: 18px;
+}
+
+a,
+a:hover,
+a:visited,
+a:active,
+a:focus {
+    color: black !important;
+    text-decoration: none !important;
+}
+
+.option-filter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.option-filter-list li {
+    margin-bottom: 18px;
+    text-transform: lowercase;
+}
+
+.option-filter-list li::first-letter {
+    text-transform: uppercase;
+}
+
+.option-filter-list li span {
+    text-transform: uppercase;
+    padding-left: 8px;
+}
+
+.checkbox {
+    border-radius: 20px;
+    border: 1px solid red;
+    accent-color: black;
+}
+
+.option-choice {
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.option-choice span {
+    font-size: 16px;
+}
+
+.slider-labels {
+    margin-top: 10px;
+}
+
+.checked {
+    color: #ff9017;
+    padding-left: 1px;
+    display: inline-block;
+}
+
+/* .box_classify {
+    height: 62px;
+    max-width: 100%;
+    border: 1px solid #dee2e7;
+    border-radius: 6px;
+    margin-bottom: 70px;
+    margin-left: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.box_classify-title {
+    padding: 19px 19px;
+    height: 62px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 350;
+    letter-spacing: 9%;
+    line-height: 14.85px;
+}
+
+.box_classify-list {
+    list-style: none;
+}
+
+.box_classify-item {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 19px 19px;
+    margin-right: 5px;
+    padding-left: 0px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    top: -10px;
+}
+
+.dropdown-toggle {
+    background-color: #f1f1f1;
+    border: none;
+    color: #333;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+    animation: fadeInOut 0.3s ease-in-out;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #333;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+} */
+
+.container {
+    max-width: 1140px;
+}
+
+.content-product {
+    display: inline-flex;
+}
+
+.content-product .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/* .card-header {
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+} */
+
+/* .card {
+    border: 1px solid #ccc;
+}
+
+.card-body {
+    border-top: none;
+} */
+
+.product-img {
+    height: 468px;
+    width: 100%;
+    position: relative !important;
+}
+
+.favorite-icon {
+    position: absolute !important;
+    top: 10px;
+    left: 10px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* .product-img:hover .favorite-icon {
+    opacity: 0.5;
+} */
+
+.favorite-icon i {
+    color: #ff6666;
+}
+
+.favorite-icon.active {
+    border: none;
+    /* Thêm border màu đen khi active */
+}
+
+.favorite-icon.active i {
+    color: black;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+}
+
+.product {
+    width: 307px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.product:last-child {
+    margin-right: 0;
+    /* Loại bỏ khoảng cách bên phải của phần tử cuối cùng */
+}
+
+.product-color {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.card-list {
+    gap: 0 10px;
+    text-align: center;
+}
+
+.box-left {
+    border-width: 3px;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #ab6b26;
+}
+
+.box-right {
+    border-width: 3px;
+    margin-left: 5px;
+    width: 30px;
+    height: 30px;
+    background-color: #1e262e;
+}
+
+#slider-range {
+}
+
+.noUi-target,
+.noUi-target * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -ms-touch-action: none;
+    touch-action: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.noUi-target {
+    position: relative;
+    direction: ltr;
+}
+
+.noUi-base {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    /* Fix 401 */
+}
+
+.noUi-origin {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.noUi-handle {
+    position: relative;
+    z-index: 1;
+}
+
+.noUi-stacking .noUi-handle {
+    /* This class is applied to the lower origin when
+its values is > 50%. */
+    z-index: 10;
+}
+
+.noUi-state-tap .noUi-origin {
+    -webkit-transition: left 0.3s, top 0.3s;
+    transition: left 0.3s, top 0.3s;
+}
+
+.noUi-state-drag * {
+    cursor: inherit !important;
+}
+
+/* Painting and performance;
+* Browsers can paint handles in their own layer.
+*/
+.noUi-base,
+.noUi-handle {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* Slider size and handle placement;
+*/
+.noUi-horizontal {
+    height: 4px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    left: -7px;
+    top: -7px;
+    background-color: #f1f1f1;
+    border: 1px solid black;
+}
+
+/* Styling;
+*/
+.noUi-background {
+    background: #d6d7d9;
+}
+
+.noUi-connect {
+    background: black;
+    -webkit-transition: background 450ms;
+    transition: background 450ms;
+}
+
+.noUi-origin {
+    border-radius: 2px;
+}
+
+.noUi-target {
+    border-radius: 2px;
+}
+
+.noUi-target.noUi-connect {
+}
+
+/* Handles and cursors;
+*/
+.noUi-draggable {
+    cursor: w-resize;
+}
+
+.noUi-vertical .noUi-draggable {
+    cursor: n-resize;
+}
+
+.noUi-handle {
+    cursor: default;
+    -webkit-box-sizing: content-box !important;
+    -moz-box-sizing: content-box !important;
+    box-sizing: content-box !important;
+}
+
+.noUi-handle:active {
+    border: 8px solid #345dbb;
+    border: 8px solid rgba(53, 93, 187, 0.38);
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    left: -14px;
+    top: -14px;
+}
+
+/* Disabled state;
+*/
+[disabled].noUi-connect,
+[disabled] .noUi-connect {
+    background: #b8b8b8;
+}
+
+[disabled].noUi-origin,
+[disabled] .noUi-handle {
+    cursor: not-allowed;
+}
