@@ -1,33 +1,9 @@
 @extends('layout.masterAdmin')
 
-@section('title', 'Order Customer')
+@section('title', 'Cusomer Manage')
 
 @section('styles')
-<style>
-    .form-control,
-    .dataTable-input {
-        display: block;
-        width: 100%;
-        padding: 0.875rem 1.125rem;
-        font-size: 0.875rem;
-        font-weight: 400;
-        line-height: 1;
-        color: #69707a;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #c5ccd6;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        border-radius: 0.35rem;
-        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
 
-    .card-image {
-        width: 15%;
-        height: 15%;
-    }
-</style>
 @stop
 
 @section('content')
@@ -37,7 +13,7 @@
 
             <div class="row g-3 mb-4 align-items-center justify-content-between" style="margin-top:50px">
                 <div class="col-auto">
-                    <h1 class="app-page-title mb-0">Orders</h1>
+                    <h1 class="app-page-title mb-0">Cusomer Manage</h1>
                 </div>
                 <div class="col-auto">
                     <div class="page-utilities">
@@ -79,15 +55,15 @@
 
 
             <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-paid" aria-selected="false">Pending</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-processing" role="tab" aria-controls="orders-pending" aria-selected="false">Processing</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-InTransit" role="tab" aria-controls="orders-cancelled" aria-selected="false">In Transit</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-completed" role="tab" aria-controls="orders-cancelled" aria-selected="false">Completed</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Canclled</a>
+                <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a> -->
+                <!-- <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Pending</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a> -->
             </nav>
 
-
+            <!-- <a href="{{ route('admin.addProduct') }}">
+                <button class="btn btn-success">Add new product</button>
+            </a> -->
             <div class="tab-content" id="orders-table-tab-content">
                 <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                     <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -96,33 +72,31 @@
                                 <table class="table app-table-hover mb-0 text-left">
                                     <thead>
                                         <tr>
-                                            <th class="cell">Order ID</th>
-                                            <th class="cell">Customer name</th>
-                                            <th class="cell">Order Date</th>
-                                            <th class="cell">Status</th>
-                                            <th class="cell">Total bill</th>
+                                            <th class="cell" style="width:300px">Customer name</th>
+                                            <th class="cell">Email</th>
+                                            <th class="cell">Phone</th>
+                                            <th class="cell">Address</th>
+                                            <th class="cell">Created account at</th>
+                                            <th class="cell">Updated account at</th>
                                             <th class="cell"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($orderCustomer as $order)
+                                        @foreach($customers as $customer)
                                         <tr>
-                                            <td class="cell">#{{ $order->id }}</td>
-                                            <td class="cell"><span class="truncate">{{ $order->user->name }}</span></td>
-                                            <td class="cell">{{ $order->date_order }}</td>
-                                            <td class="cell"><select data-order-id="{{$order->id}}" class="form-control status-select">
-                                                    @foreach($orderStatusList as $orderStatus)
-                                                    <option
-                                                        value="{{ $orderStatus->id }}" @if($order->status_id == $orderStatus->id) selected @endif>
-                                                        {{ $orderStatus->order_status }}
-                                                    </option>
-                                                    @endforeach
-                                                </select></td>
-                                            <td class="cell">{{ $order->total_amount }}</td>
-                                            <td class="cell"><a class="btn-sm app-btn-secondary"
-                                                    href="{{ route('admin.detailOrder', ['orderId' => $order->id]) }}">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </a></td>
+                                            <td class="cell">{{ $customer->name }}</td>
+                                            <td class="cell">{{ $customer->email }}</td>
+                                            <td class="cell">{{ $customer->phone }}</td>
+                                            <td class="cell">{{ $customer->address }}</td>
+                                            <td class="cell">{{ $customer->created_at }}</td>
+                                            <td class="cell">{{ $customer->updated_at }}</td>
+                                            <td class="cell">
+                                                <form action="{{ route('admin.deleteCustomer') }}" method="POST" onsubmit="return confirm('Bạn có muốn xóa bỏ khách hàng')">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $customer->id }}">
+                                                    <button type="submit" class="text-danger" style="border: none;"><i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -152,7 +126,7 @@
                         <div class="app-card-body">
                             <div class="table-responsive">
 
-                                <table class="table mb-0 text-left">
+                                <!-- <table class="table mb-0 text-left">
                                     <thead>
                                         <tr>
                                             <th class="cell">Order</th>
@@ -207,13 +181,13 @@
                                         </tr>
 
                                     </tbody>
-                                </table>
+                                </table> -->
                             </div><!--//table-responsive-->
                         </div><!--//app-card-body-->
                     </div><!--//app-card-->
                 </div><!--//tab-pane-->
 
-                <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
+                <!-- <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
                     <div class="app-card app-card-orders-table mb-5">
                         <div class="app-card-body">
                             <div class="table-responsive">
@@ -241,11 +215,11 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div><!--//table-responsive-->
-                        </div><!--//app-card-body-->
-                    </div><!--//app-card-->
-                </div><!--//tab-pane-->
-                <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
                     <div class="app-card app-card-orders-table mb-5">
                         <div class="app-card-body">
                             <div class="table-responsive">
@@ -270,96 +244,25 @@
                                             <td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
                                             <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
                                             <td class="cell">$59.00</td>
-                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="">View</a></td>
+                                            <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
                                         </tr>
 
                                     </tbody>
                                 </table>
-                            </div><!--//table-responsive-->
-                        </div><!--//app-card-body-->
-                    </div><!--//app-card-->
-                </div><!--//tab-pane-->
-            </div><!--//tab-content-->
-        </div><!--//container-fluid-->
-    </div><!--//app-content-->
-
-</div><!--//app-wrapper-->
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
 
 
-@stop
+        </div><!--//app-content-->
 
-@section('scripts')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script>
-    // Cập nhật trạng thái đơn hàng
-    document.addEventListener("DOMContentLoaded", function() {
-        const selects = document.querySelectorAll('.status-select')
-        selects.forEach(select => {
-            select.addEventListener('change', async function() {
-                const orderId = this.getAttribute('data-order-id');
-                const statusId = this.value;
-                try {
-                    const response = await fetch("{{ route('admin.updateOrder') }}", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                        },
-                        body: JSON.stringify({
-                            orderId: orderId,
-                            statusId: statusId
-                        })
-                    });
-                    console.log(response);
-                    if (response.ok) {
-                        alert('Status Order update successfully!!')
-                    } else {
-                        alert('Status Order update fail!!')
-                    }
-                } catch (err) {
-                    console.error(`${err}`);
-                }
-            });
-        })
-    })
+    </div><!--//app-wrapper-->
 
-    // // Xử lý hiển thị modal danh sách các sp trong 1 đơn hàng
-    // document.addEventListener("DOMContentLoaded", function() {
-    //     const modal = document.getElementById('orderDetailModal');
 
-    //     document.querySelectorAll('[data-bs-toggle="modal"]').forEach(button => {
-    //         button.addEventListener('click', function(e) {
-    //             e.preventDefault(); // Ngăn chặn hành động mặc định của nút
-    //             const orderId = this.getAttribute('data-order-id'); // Lấy ID đơn hàng
-    //             const url = this.getAttribute('href'); // Lấy URL API
+    @stop
 
-    //             // Gửi yêu cầu đến server
-    //             fetch(url)
-    //                 .then(response => response.json())
-    //                 .then(order => {
-    //                     // Làm trống nội dung cũ
-    //                     const tbody = modal.querySelector('tbody');
-    //                     tbody.innerHTML = '';
-
-    //                     // Thêm nội dung mới vào tbody
-    //                     order.order_items.forEach(item => {
-    //                         const row = `
-    //                         <tr>
-    //                             <td><img src="${item.product.thumbnail_url}" class="card-image"></td>
-    //                             <td>${item.product.product_name}</td>
-    //                             <td>${item.product.brand}</td>
-    //                             <td>${item.size}</td>
-    //                             <td>${item.color}</td>
-    //                             <td>${item.quantity}</td>
-    //                             <td>${item.product.price * item.quantity}</td>
-    //                         </tr>
-    //                     `;
-    //                         tbody.innerHTML += row;
-    //                     });
-    //                 })
-    //                 .catch(error => console.error('Error loading order details:', error));
-    //         });
-    //     });
-    // });
-</script>
-@stop
+    @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    @stop

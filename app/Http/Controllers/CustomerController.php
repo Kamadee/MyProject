@@ -133,8 +133,8 @@ class CustomerController extends Controller
 
     public function updateCart(Request $request)
     {
-        $cartId = $request->input('id');
-        $quantity = $request->input('quantity');
+        $cartId = $request->id;
+        $quantity = max(1, (int)$request->quantity);
         $cart = Cart::findOrFail($cartId);
         // dd($cart);
         if ($cart) {

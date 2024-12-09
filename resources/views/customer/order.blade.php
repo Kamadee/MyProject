@@ -49,7 +49,7 @@
                         <td>{{ $item->size }}</td>
                         <td>{{ $item->color }}</td>
                         <td>{{ $item->quantity }}</td>
-                        <td>${{ $item->products->price * $item->quantity }}</td>
+                        <td>{{ $item->products->price * $item->quantity }}</td>
                     </tr>
                     @endforeach
                     @endif

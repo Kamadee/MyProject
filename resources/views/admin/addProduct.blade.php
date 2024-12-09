@@ -74,6 +74,10 @@
         margin-left: 1rem;
         margin-right: 1rem;
     }
+
+    .is-invalid {
+        border-color: red !important;
+    }
 </style>
 @stop
 
@@ -100,45 +104,88 @@
                 @else action="{{ route('admin.saveAdd') }}"
                 @endif method="POST">
                 @csrf
+                <!-- Tên sp -->
                 <div class="mb-3">
-                    <label class="small mb-1" for="a">Product name</label>
+                    <label class="small mb-1" for="name">Product name</label>
                     <input <?php if (isset($product)) { ?> value="<?php echo $product->product_name ?>" <?php } ?>
                         class="form-control"
-                        name="product_name" id="a" type="text">
+                        name="product_name" id="name" type="text">
                 </div>
+                <!-- Tên brand -->
                 <div class="mb-3">
-                    <label class="small mb-1" for="b">Brand</label>
+                    <label class="small mb-1" for="brand">Brand</label>
                     <input <?php if (isset($product)) { ?> value="<?php echo $product->brand ?>" <?php } ?>
                         class="form-control"
-                        name="brand" id="b" type="text">
+                        name="brand" id="brand" type="text">
                 </div>
+                <!-- Tên danh mục sp -->
                 <div class="mb-3">
-                    <label class="small mb-1" for="c">Price</label>
+                    <label class="small mb-1" for="category">Category</label>
+                    <select name="category_id" class="form-control col-sm-10" aria-label="Default select example">
+                        <option selected>Select product category</option>
+                        @foreach($categoriesList as $category)
+                        <option
+                            <?php if (isset($product) && $product->category_id == $category->id) { ?> selected <?php } ?>
+                            value="{{ $category->id }}">{{ $category->category_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <!-- Giá cả sp-->
+                <div class="mb-3">
+                    <label class="small mb-1" for="price">Price</label>
                     <input <?php if (isset($product)) { ?> value="<?php echo $product->price ?>" <?php } ?>
                         class="form-control"
-                        name="price" id="c" type="text">
+                        name="price" id="price" type="text">
                 </div>
+                <!-- Ảnh sp -->
                 <div class="mb-3">
-                    <label class="small mb-1" for="d">Product image</label>
+                    <label class="small mb-1" for="image">Product image</label>
                     <input <?php if (isset($product)) { ?> value="<?php echo $product->thumbnail_url ?>" <?php } ?>
                         class="form-control"
-                        name="thumbnail_url" id="d" type="text">
+                        name="thumbnail_url" id="image" type="text">
                 </div>
-                <!-- Form Row-->
-                <!-- Form Group (email address)-->
+                <!-- Mô tả sp -->
+                <div class="mb-3">
+                    <label class="small mb-1" for="description">Description</label>
+                    <input <?php if (isset($product)) { ?> value="<?php echo $product->description ?>" <?php } ?>
+                        class="form-control"
+                        name="description" id="description" type="text">
+                </div>
                 <button class="btn btn-primary" type="submit">Save edit</button>
             </form>
-
-            <!-- Form Group (username)-->
-
-
-        </div><!--//container-fluid-->
-    </div><!--//app-content-->
-</div><!--//app-wrapper-->
+        </div>
+    </div>
+</div>
 
 
 @stop
 
 @section('scripts')
 <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script>
+    // // xử lý validate
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     const form = document.querySelector('form');
+    //     form.addEventListener('submit', function(e) {
+    //         const inputs = form.querySelectorAll('input');
+    //         let isValid = true; // Flag kiểm tra trạng thái form
+    //         inputs.forEach(input => {
+    //             const feedback = input.nextElementSibling; // Lấy div.invalid-feedback
+    //             if (input.value.trim() === '') {
+    //                 feedback.style.display = 'block'; 
+    //                 input.classList.add('is-invalid');
+    //                 isValid = false;
+    //             } else {
+    //                 feedback.style.display = 'none'; 
+    //                 input.classList.remove('is-invalid'); 
+    //             }
+    //         });
+    //         // Nếu lỗi, ngăn ko cho submit
+    //         if (!isValid) {
+    //             e.preventDefault();
+    //         }
+    //     });
+    // });
+</script>
 @stop

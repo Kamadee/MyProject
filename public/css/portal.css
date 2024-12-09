@@ -12152,6 +12152,11 @@ button.close:focus {
     height: 100%;
     margin-top: -0.5rem;
 }
+/* Kích hoạt active */
+.app-menu .nav-link.active {
+    background-color: #128c54;
+    color: white;
+}
 .app-nav .submenu-link:hover {
     color: #252930;
 }

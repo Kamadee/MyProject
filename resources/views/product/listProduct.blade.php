@@ -42,7 +42,7 @@
           </a>
         </div>
         <div class="product-name">{{ $product->product_name }}</div>
-        <div class="product-price">{{ $product->price }}</div>
+        <div class="product-price">${{ number_format($product->price,0) }}</div>
         <div class="product-color">
           <div class="box-left"></div>
           <div class="box-right"></div>
@@ -127,5 +127,93 @@
       }
     });
   });
+
+  // Phân trang
+  // let products = [];
+  // let currentPage = 1;
+  // let perPage = 8;
+  // let totalPage = products.length / perPage;
+  // let perProduct = [];
+  // document.addEventListener('DOMContentLoaded', () => {
+  //   getProduct();
+  // });
+  // async function getProduct() {
+  //   try {
+  //     const data = await $.ajax({
+  //       url: "{!! route('product.listProduct') !!}",
+  //       method: 'GET',
+  //       data: {
+  //         _token: "{{ csrf_token() }}",
+  //         perPage: perPage,
+  //         page: currentPage
+  //       },
+  //     });
+  //     products = data.data;
+  //     perProduct = products.slice(
+  //       (currentPage - 1) * perPage,
+  //       (currentPage - 1) * perPage + perPage
+  //     )
+  //     renderProduct(); // Hiển thị sản phẩm
+  //     renderPageNumber();
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // }
+
+  // function handlePageNumber(page) {
+  //   if (page >= 1 && page <= totalPage) {
+  //     currentPage = page;
+  //     perProduct = products.slice(
+  //       (currentPage - 1) * perPage,
+  //       (currentPage - 1) * perPage + perPage
+  //     );
+  //     renderProduct(); // Hiển thị sản phẩm mới
+  //     renderPageNumber(); // Cập nhật số trang
+  //   }
+  // }
+
+  // function renderPageNumber() {
+  //   const paginationContainer = document.querySelector('.container_pagination');
+  //   paginationContainer.innerHTML = ''; // Xóa số trang cũ
+
+  //   for (let i = 1; i <= totalPage; i++) {
+  //     paginationContainer.innerHTML += `
+  //     <li class="pagination-item ${i === currentPage ? 'pagination-item--active' : ''}">
+  //       <a href="javascript:void(0);" class="pagination-item_link" data-page="${i}">
+  //         ${i}
+  //       </a>
+  //     </li>
+  //   `;
+  //   }
+
+  //   document.querySelectorAll('.pagination-item_link').forEach(link => {
+  //     link.addEventListener('click', function() {
+  //       const page = parseInt(this.dataset.page);
+  //       handlePageNumber(page);
+  //     });
+  //   });
+  // }
+
+  // function renderProduct() {
+  //   const productContainer = document.querySelector('.product-list');
+  //   productContainer.innerHTML = ''; // Xóa nội dung cũ
+  //   perProduct.forEach(product => {
+  //     productContainer.innerHTML += `
+  //     <div class="product">
+  //       <div class="product-img">
+  //         <a href="/product/${product.id}">
+  //           <img src="${product.thumbnail_url}" alt="${product.product_name}">
+  //         </a>
+  //       </div>
+  //       <div class="product-name">${product.product_name}</div>
+  //       <div class="product-price">$${product.price.toLocaleString()}</div>
+  //       <div class="product-color">
+  //         <div class="box-left"></div>
+  //         <div class="box-right"></div>
+  //       </div>
+  //     </div>
+  //   `;
+  //   });
+  // }
 </script>
 @stop

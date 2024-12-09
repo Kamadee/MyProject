@@ -38,33 +38,26 @@
     @yield('scripts')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="assets/plugins/popper.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/plugins/popper.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/bootstrap.min.js') }}"></script>
 
     <!-- Charts JS -->
-    <script src="assets/plugins/chart.js/chart.min.js"></script>
-    <script src="assets/js/index-charts.js"></script>
+    <script src="{{ asset('js/plugins/chart.min.js') }}"></script>
+    <script src="{{ asset('js/plugins/index-charts.js') }}"></script>
 
     <!-- Page Specific JS -->
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('js/plugins/app.js') }}"></script>
     <script>
-        function toggleSearchForm() {
-            var searchForm = document.getElementById('search-form');
-            if (searchForm.style.display === 'none') {
-                searchForm.style.display = 'block';
-            } else {
-                searchForm.style.display = 'none';
+        // Làm nổi bật mục menu trên thanh nav, mỗi khi click vào
+        const navLinks = document.querySelectorAll('.nav-link');
+        const currentUrl = window.location.href;
+        navLinks.forEach(link => {
+            if (currentUrl === link.href) {
+                link.classList.add('active');
             }
-        }
-        $(document).ready(function() {
-            $('.navbar-nav .nav-item a').on('click', function() {
-                console.log('Đã nhấp vào:', $(this).text()); // Kiểm tra xem click có hoạt động không
-
-                // Loại bỏ lớp 'active' khỏi tất cả các mục
-                $('.navbar-nav .nav-item a').removeClass('active');
-
-                // Thêm lớp 'active' cho mục được nhấp
-                $(this).addClass('active');
+            link.addEventListener('click', function() {
+                navLinks.forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
             });
         });
     </script>

@@ -248,9 +248,9 @@
 <body>
     @include('partials.header')
 
-    <div id="content-area">
-        @yield('content') <!-- Đây là phần nội dung của từng trang con -->
-    </div>
+
+    @yield('content') <!-- Đây là phần nội dung của từng trang con -->
+
 
     @include('partials.footer')
 
@@ -259,7 +259,46 @@
     @yield('scripts')
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            const notification = document.getElementById("cart-notification");
+            try {
+                const response = await fetch("{{ route('customer.cartCount') }}", {
+                    method: "GET",
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    notification.textContent = data.cartCount;
+                }
+            } catch (error) {
+                console.log(`${error}`);
+            }
+        });
+        // Xử lý event click icon tìm kiếm
+        function toggleSearchForm() {
+            var searchForm = document.getElementById("search-form");
+            if (searchForm.style.display === "none") {
+                searchForm.style.display = "block";
+            } else {
+                searchForm.style.display = "none";
+            }
+        }
+        $(document).ready(function() {
+            $(".navbar-nav .nav-item a").on("click", function() {
+                console.log("Đã nhấp vào:", $(this).text()); // Kiểm tra xem click có hoạt động không
 
+                // Loại bỏ lớp 'active' khỏi tất cả các mục
+                $(".navbar-nav .nav-item a").removeClass("active");
+
+                // Thêm lớp 'active' cho mục được nhấp
+                $(this).addClass("active");
+            });
+        });
+        // Hiển thị notification số lượng sp trong cart
+    </script>
 </body>
 
 </html>

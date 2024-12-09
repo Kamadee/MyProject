@@ -55,13 +55,17 @@
 
 
             <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-                <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Paid</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Pending</a>
-                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Cancelled</a>
+                <!-- <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-paid-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-paid" aria-selected="false">Pending</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-processing" role="tab" aria-controls="orders-pending" aria-selected="false">Processing</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-InTransit" role="tab" aria-controls="orders-cancelled" aria-selected="false">In Transit</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-completed" role="tab" aria-controls="orders-cancelled" aria-selected="false">Completed</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">Canclled</a> -->
             </nav>
 
-
+            <a href="{{ route('admin.addProduct') }}">
+                <button class="btn btn-success" style="color: white">Add new product</button>
+            </a>
             <div class="tab-content" id="orders-table-tab-content">
                 <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
                     <div class="app-card app-card-orders-table shadow-sm mb-5">
@@ -73,6 +77,7 @@
                                             <th class="cell" style="width:300px">Product image</th>
                                             <th class="cell">Product name</th>
                                             <th class="cell">Brand</th>
+                                            <th class="cell">Category</th>
                                             <th class="cell">Price</th>
                                             <th class="cell">Create at</th>
                                             <th class="cell">Update at</th>
@@ -90,11 +95,12 @@
                                             </td>
                                             <td class="cell"><span class="truncate">{{ $product->product_name }}</span></td>
                                             <td class="cell">{{ $product->brand }}</td>
+                                            <td class="cell">{{ $product->categories->category_name }}</td>
                                             <td class="cell">{{ $product->price }}</td>
                                             <td class="cell">{{ $product->created_at }}</td>
                                             <td class="cell">{{ $product->updated_at }}</td>
                                             <td class="cell">
-                                                <a href="{{ route('admin.addProduct', ['productId' => $product->id]) }}">
+                                                <a href="{{ route('admin.editProduct', ['productId' => $product->id]) }}">
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </a>
                                             </td>
@@ -110,9 +116,7 @@
                                     </tbody>
                                 </table>
                             </div><!--//table-responsive-->
-                            <a href="{{ route('admin.addProduct') }}">
-                                <button class="btn btn-success">Add</button>
-                            </a>
+
                         </div><!--//app-card-body-->
                     </div><!--//app-card-->
                     <nav class="app-pagination">
@@ -266,15 +270,13 @@
             </div><!--//tab-content-->
 
 
+        </div><!--//app-content-->
 
-        </div><!--//container-fluid-->
-    </div><!--//app-content-->
-
-</div><!--//app-wrapper-->
+    </div><!--//app-wrapper-->
 
 
-@stop
+    @stop
 
-@section('scripts')
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-@stop
+    @section('scripts')
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    @stop

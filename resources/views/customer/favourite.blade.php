@@ -41,7 +41,7 @@
                     </a>
                 </div>
                 <div class="product-name">{{ $product->product_name }}</div>
-                <div class="product-price">{{ $product->price }}</div>
+                <div class="product-price">${{ number_format($product->price, 0) }}</div>
                 <div class="product-color">
                     <div class="box-left"></div>
                     <div class="box-right"></div>

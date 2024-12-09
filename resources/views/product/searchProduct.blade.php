@@ -12,7 +12,7 @@
     <div class="sidebar-search">
         <form action="{{ route('product.listSearch') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-secondary">Go Search</button>
             <div id="accordion">
                 <div class="card  border-0">
                     <a data-bs-toggle="collapse" data-bs-target="#collapseOne" role="button" aria-expanded="false" aria-controls="collapseOne">
@@ -128,7 +128,7 @@
                     <a data-bs-toggle="collapse" data-bs-target="#color" role="button" aria-expanded="false" aria-controls="color">
                         <div class="card-header bg-white d-flex justify-content-between  border-0" id="headingOne">
                             <div class="size">
-                                <h4>Color</h4>
+                                <h4>Categories</h4>
                             </div>
                             <div class="arrow">
                                 <img src="{{ asset('images/icons/arrow.svg') }}" />
@@ -139,20 +139,21 @@
                     <div id="color" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                         <div class="card-body">
                             <ul class="option-filter-list">
-                                @foreach ($colorList as $color)
+                                @foreach ($categoryList as $category)
                                 <li class="option-choice">
                                     <input type="checkbox" <?php
-                                                            if (isset($searchForm['color']) && in_array($color->color, $searchForm['color'])) {
+                                                            if (isset($searchForm['category']) && in_array($category->category, $searchForm['category'])) {
                                                             ?> checked="true" <?php
                                                                             }
-                                                                                ?> value="{{ $color->color }}" name="color[]" class="checkbox" />
-                                    <span>{{ $color->color }}</span>
+                                                                                ?> value="{{ $category->category_name }}" name="category[]" class="checkbox" />
+                                    <span>{{ $category->category_name }}</span>
                                 </li>
                                 @endforeach
                                 <li class="option-choice fw-bold">See all</li>
                             </ul>
                         </div>
                     </div>
+
                 </div>
                 <div class="card border-0">
                     <a data-bs-toggle="collapse" data-bs-target="#rating" role="button" aria-expanded="false" aria-controls="rating">
@@ -274,7 +275,7 @@
                             </a>
                         </div>
                         <div class="product-name">{{ $product->product_name }}</div>
-                        <div class="product-price">{{ $product->price }}</div>
+                        <div class="product-price">${{ number_format($product->price,0) }}</div>
                         <div class="product-color">
                             <div class="box-left"></div>
                             <div class="box-right"></div>

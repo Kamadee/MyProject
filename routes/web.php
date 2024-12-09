@@ -17,6 +17,8 @@ Route::group(['prefix' => 'authentication', 'as' => 'authentication', 'middlewar
     Route::get('/register', [AuthenticationController::class, 'getRegister'])->name('.register');
     Route::post('/post-register', [AuthenticationController::class, 'postRegister'])->name('.postRegister');
     Route::post('/logOut', [AuthenticationController::class, 'logOut'])->name('.logOut')->withoutMiddleware(['guest']);
+    Route::get('/forgetPassword', [AuthenticationController::class, 'forgetPassword'])->name('.forgetPassword');
+    Route::post('/postForget', [AuthenticationController::class, 'postForget'])->name('.postForget');
 });
 
 Route::get('/homeShop', [ProductController::class, 'getHome'])->name('product.homeShop');
@@ -26,6 +28,7 @@ Route::group(['prefix' => 'product', 'as' => 'product'], function () {
     Route::get('{productId}/detailProduct', [ProductController::class, 'getDetailProduct'])->name('.detailProduct');
     Route::get('/listProduct', [ProductController::class, 'getListProduct'])->name('.listProduct');
     Route::get('/search', [ProductController::class, 'search'])->name('.search');
+    Route::get('/productCount', [ProductController::class, 'allProduct'])->name('.productCount');
 });
 
 
@@ -57,7 +60,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin', 'middleware' => ['auth']], f
     Route::get('/{orderId}/detailOrder', [AdminController::class, 'getDetailOrder'])->name('.detailOrder');
     Route::get('/productManage', [AdminController::class, 'getProductManage'])->name('.productManage');
     Route::get('/addProduct', [AdminController::class, 'addProduct'])->name('.addProduct');
+    Route::get('/editProduct', [AdminController::class, 'editProduct'])->name('.editProduct');
     Route::post('/saveAdd', [AdminController::class, 'saveAdd'])->name('.saveAdd');
     Route::post('/saveEdit/{productId}', [AdminController::class, 'saveEdit'])->name('.saveEdit');
     Route::post('/deleteProduct', [AdminController::class, 'deleteProduct'])->name('.deleteProduct');
+    Route::post('/updateOrder', [AdminController::class, 'updateOrder'])->name('.updateOrder');
+    Route::get('/customerManage', [AdminController::class, 'getCustomerManage'])->name('.customerManage');
+    Route::post('/customerDelete', [AdminController::class, 'deleteCustomer'])->name('.deleteCustomer');
 });

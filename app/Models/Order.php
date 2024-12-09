@@ -47,4 +47,8 @@ class Order extends Model
     {
         $this->attributes['recipient_name'] = $value ?: 'Unknown'; // Gán giá trị hoặc 'Unknown' nếu null
     }
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class, 'status_id', 'id');
+    }
 }

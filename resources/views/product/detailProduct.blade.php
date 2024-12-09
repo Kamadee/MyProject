@@ -13,11 +13,10 @@
         <img src="{{ $product->thumbnail_url }}" class="img-product">
     </div>
     <div class="detail-product-info">
-        <p style="color: #807D7E">MEN<img src="{{ asset('images/icons/left (Stroke).png') }}">{{ $product->category_name }}</p>
-        <p>
+
         <h2 style="font-weight: 400; font-size: 32px">{{ $product->product_name }}</h2>
-        </p>
-        <p>MAS24TP005-SML-BRN</p>
+
+        <h4 style="color: #807D7E">{{ $categoryName }}</h4>
         <p class="rating" style="color: #807D7E">
             <span class="fa fa-star checked"></span>
             <span class="fa fa-star checked"></span>
@@ -75,7 +74,7 @@
             <button class="btn btn-dark">
                 <span class="button-text">ADD TO CART</span>
             </button>
-            <div class="price-box">{{ $product->price }}</div>
+            <div class="price-box">${{ number_format($product->price, 0) }}</div>
         </div>
         @endif
 
@@ -85,14 +84,14 @@
                 <img src="{{ asset('images/icons/Frame 24.png') }}">
                 <span>SECURE PAYMENT</span>
                 <div class="tooltip-text">
-                    Bảo mật tận răng!
+                    Bảo mật tuyệt đối!
                 </div>
             </div>
             <div class="tooltip-container">
                 <img src="{{ asset('images/icons/Frame 25.png') }}">
                 <span>SIZE & FIT</span>
                 <div class="tooltip-text">
-                    Không vừa cho đổi trả!
+                    Đổi trả miễn phí nếu không vừa!
                 </div>
             </div>
             <div class="tooltip-container">
@@ -106,7 +105,7 @@
                 <img src="{{ asset('images/icons/Frame 27.png') }}">
                 <span>FREE SHIPPING & RETURNS</span>
                 <div class="tooltip-text">
-                    Đổi trả miễn cmn phí, nếu như sp còn tem!
+                    Đổi trả miễn phí, nếu như sp còn chưa qua sử dụng, giặt!
                 </div>
             </div>
         </div>
@@ -143,7 +142,7 @@
                     </a>
                 </div>
                 <div class="product-name">{{ $product->product_name }}</div>
-                <div class="product-price">{{ $product->price }}</div>
+                <div class="product-price">${{ number_format($product->price, 0) }}</div>
                 <div class="product-color">
                     <div class="box-left"></div>
                     <div class="box-right"></div>

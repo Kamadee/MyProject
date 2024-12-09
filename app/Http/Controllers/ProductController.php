@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Quantity;
+use App\Models\Category;
 use App\Models\ProductImage;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Auth\Events\Validated;
@@ -24,16 +25,17 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
-    public function getHome(Request $request)
+    public function getHome()
     {
         $products = Product::all();
         return view('product.homeShop', ['products' => $products]);
     }
-    public function getListProduct(Request $request)
+    public function getListProduct()
     {
         $products = Product::all();
         return view('product.listProduct', ['products' => $products]);
     }
+
     public function getProduct(Request $request)
     {
         $products = Product::all();
@@ -59,9 +61,15 @@ class ProductController extends Controller
         }
         $brandList = $this->getBrandList();
         $sizeList = $this->getSizeList();
-        $colorList = $this->getColorList();
+        $categoryList = $this->getCategoryList();
 
-        return view('product.searchProduct', ['sizeList' => $sizeList, 'colorList' => $colorList, 'brandList' => $brandList, 'products' => $products, 'searchForm' => $oldSearchForm]);
+        return view('product.searchProduct', [
+            'sizeList' => $sizeList,
+            'categoryList' => $categoryList,
+            'brandList' => $brandList,
+            'products' => $products,
+            'searchForm' => $oldSearchForm
+        ]);
     }
 
     public function getBrandList()
@@ -74,22 +82,34 @@ class ProductController extends Controller
         $sizeList = Quantity::select('size')->distinct()->get();
         return $sizeList;
     }
-
-    public function getColorList()
+    public function getCategoryList()
     {
-        $colorList = Quantity::select('color')->distinct()->get();
-        return $colorList;
-        dd($colorList);
+        $categoryList = Category::all();
+        return $categoryList;
     }
+
+    // public function getColorList()
+    // {
+    //     $colorList = Quantity::select('color')->distinct()->get();
+    //     return $colorList;
+    //     dd($colorList);
+    // }
 
     public function searchProduct($formData = null)
     {
-        $products = Product::with(['quantities']);
+        $products = Product::with(['quantities', 'categories']);
         // dd($formData);
         if ($formData && $formData['size']) {
             $size = $formData['size'];
             $products->whereHas('quantities', function ($query) use ($size) {
                 $query->where('size', $size);
+            });
+        }
+
+        if ($formData && $formData['category']) {
+            $category = $formData['category'];
+            $products->whereHas('categories', function ($query) use ($category) {
+                $query->where('category_name', $category);
             });
         }
 
@@ -99,14 +119,14 @@ class ProductController extends Controller
             // dd($products)->get();
         }
 
-        if ($formData && $formData['color']) {
-            $color = $formData['color'];
-            $products->with(['quantities' => function ($q) use ($color) {
-                $q->whereIn('color', $color);
-            }])->whereHas('quantities', function ($query) use ($color) {
-                $query->whereIn('color', $color);
-            });
-        }
+        // if ($formData && $formData['color']) {
+        //     $color = $formData['color'];
+        //     $products->with(['quantities' => function ($q) use ($color) {
+        //         $q->whereIn('color', $color);
+        //     }])->whereHas('quantities', function ($query) use ($color) {
+        //         $query->whereIn('color', $color);
+        //     });
+        // }
 
         if ($formData && $formData['maxRange'] && $formData['minRange']) {
             $minRange = floatval(str_replace(',', '', substr($formData['minRange'], 1)));
@@ -127,7 +147,8 @@ class ProductController extends Controller
     public function getDetailProduct(Request $request)
     {
         $productId = $request->productId;
-        $product = Product::with('quantities')->find($productId);
+        $product = Product::with(['quantities', 'categories'])->find($productId);
+        $categoryName = $product->categories->category_name;
         $sizes = Quantity::select('size')->distinct()->where('product_id', $productId)->get();
         $colors = Quantity::select('color')->distinct()->where('product_id', $productId)->get();
 
@@ -136,7 +157,13 @@ class ProductController extends Controller
             ->groupBy('order_items.product_id', 'products.product_name', 'products.thumbnail_url', 'products.price')
             ->orderBy('occurence', 'DESC')
             ->get();
-        return view('product.detailProduct', ['product' => $product, 'sizes' => $sizes, 'colors' => $colors, 'bestItems' => $bestItems]);
+        return view('product.detailProduct', [
+            'product' => $product,
+            'sizes' => $sizes,
+            'colors' => $colors,
+            'bestItems' => $bestItems,
+            'categoryName' => $categoryName
+        ]);
     }
 
     public function search(Request $request)
@@ -145,9 +172,4 @@ class ProductController extends Controller
         $products = Product::where('product_name', 'like', '%' . $keyword . '%')->get();
         return view('product.listProduct', ['products' => $products]);
     }
-
-    // public function pay(Request $request) {
-    //     $product = Product::with('quantities')->where('product_id', $request->productId)->get();
-
-    // }    
 }

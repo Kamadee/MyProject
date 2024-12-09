@@ -49,7 +49,7 @@
                 <td>
                     <input type="number" name="quantity" value="{{ $cart->quantity }}" min="1" data-price="{{ $cart->products->price }}" data-cart-id="{{ $cart->id }}" class="form-control quantity-input" style="width: 60px;">
                 </td>
-                <td id="product-total-{{ $cart->id }}">{{ number_format($cart->products->price * $cart->quantity,2) }}</td>
+                <td id="product-total-{{ $cart->id }}">${{ number_format($cart->products->price * $cart->quantity,0) }}</td>
                 <td>
                     <form action="{{ route('customer.deleteCart') }}" method="POST" onsubmit="return confirm('Bạn có muốn bỏ sp khỏi giỏ?')">
                         @csrf
@@ -151,11 +151,20 @@
         const inputQuantitys = document.querySelectorAll('.quantity-input')
         inputQuantitys.forEach(input => {
             input.addEventListener('input', async function() {
+
                 const cartId = this.getAttribute('data-cart-id');
                 const price = parseFloat(this.getAttribute('data-price'));
                 const quantity = parseInt(this.value) || 1;
+
+                // Không cho phép giá trị nhỏ hơn 1
+                if (quantity < 1) {
+                    quantity = 1;
+                    this.value = 1; // Cập nhật lại giá trị trong ô nhập
+                }
+
                 const newTotal = price * quantity;
-                document.getElementById(`product-total-${cartId}`).textContent = newTotal;
+                let newTotalFormatted = new Intl.NumberFormat('en-US').format(newTotal);
+                document.getElementById(`product-total-${cartId}`).textContent = '$' + newTotalFormatted;
 
                 try {
                     const response = await fetch("{{ route('customer.updateCart') }}", {
@@ -180,7 +189,8 @@
                     const cartId = this.getAttribute('data-cart-id');
                     const price = parseFloat(this.getAttribute('data-price'));
                     const newTotal = price * this.value;
-                    document.getElementById(`product-total-${cartId}`).textContent = newTotal;
+                    newTotalFormatted = new Intl.NumberFormat('en-US').format(newTotal);
+                    document.getElementById(`product-total-${cartId}`).textContent = '$' + newTotalFormatted;
                 }
             });
         })

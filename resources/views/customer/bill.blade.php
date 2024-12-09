@@ -17,8 +17,8 @@
     <nav class="nav nav-borders">
         <a class="nav-link ms-0" href="{{ route('customer.profile') }}">Profile</a>
         <a class="nav-link active" href="{{ route('customer.bill') }}">Billing</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page">Security</a>
-        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page">Notifications</a>
+        <!-- <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-profile-security-page">Security</a>
+        <a class="nav-link" href="https://www.bootdey.com/snippets/view/bs5-edit-notifications-page">Notifications</a> -->
     </nav>
     <hr class="mt-0 mb-4">
     <div class="row">
@@ -149,10 +149,7 @@
                             <td>{{ $order->received_date }}</td>
                             <td>{{ $order->total_amount }}</td>
                             <td>{{ $order->payment_method }}</td>
-
-                            <td><span class="badge bg-success">{{ $order->order_status }}</span></td>
-
-
+                            <td><span class="badge bg-success">{{ $order->orderStatus->order_status }}</span></td>
                         </tr>
                         @endforeach
                     </tbody>

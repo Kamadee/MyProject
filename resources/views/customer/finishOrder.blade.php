@@ -75,10 +75,9 @@
                         <li>Address: {{ $order->user->address }}</li>
                         <li>Order date: {{ $order->date_order }}</li>
                         <li>Receive date: {{ $order->received_date }}</li>
-                        <li>Payment method: {{ $order->payment_method }}</li>
+                        <li>Payment method: ${{ $order->payment_method }}</li>
                     </ul>
-                    <button>Print bill</button>
-                    <button>Continue shoping</button>
+                    <button class="btn btn-outline-secondary">Continue shoping</button>
                 </div>
             </div>
         </div>

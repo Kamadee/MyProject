@@ -17,7 +17,7 @@
           <a class="nav-link" href="#">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0);" title="">Explore</a>
+          <a class="nav-link" href="{{ route('product.searchProduct')}}" title="">Explore</a>
         </li>
       </ul>
     </div>
@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item">
           @if(Auth::check())
-          <a class="nav-link" title="profile">
+          <a class="nav-link" href="{{ route('customer.profile') }}" title="profile">
             {{Auth::user()->name}}
           </a>
           @else
@@ -71,18 +71,20 @@
 </div>
 
 
-<div class="search-form" id="search-form" style="display: none;">
-  <form action="{{ route('product.search') }}" method="GET">
-    <div class="input-group">
+<div class="search-form" id="search-form" style="display: none; text-align: center;">
+  <form action="{{ route('product.search') }}" method="GET" style="display: inline-block;">
+    <div class="input-group" style="width: 800px;">
       <input type="text" class="form-control" name="keyword" placeholder="Search...">
       <div class="input-group-append">
-        <button class="btn btn-primary" type="submit">
+        <button class="btn btn-outline-secondary" type="submit">
           <i class="fas fa-search"></i>
         </button>
       </div>
     </div>
   </form>
 </div>
+
+
 
 <div class="end-header">
 
